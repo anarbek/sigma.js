@@ -338,6 +338,24 @@ function Plotter(nodesCtx, edgesCtx, labelsCtx, hoverCtx, graph, w, h) {
                              y2);
         ctx.stroke();
         break;
+	  case 'arrow':
+		ctx.strokeStyle = color;
+		ctx.lineWidth = edge['displaySize'] / 3;
+		ctx.beginPath();
+		ctx.moveTo(x1, y1);
+		ctx.lineTo(x2, y2);
+		ctx.stroke();
+
+		// arrowhead
+		var headlen = 10;	// length of head in pixels
+		var dx = x2-x1;
+		var dy = y2-y1;
+		var angle = Math.atan2(dy,dx);
+		ctx.lineTo(x2-headlen*Math.cos(angle-Math.PI/6),y2-headlen*Math.sin(angle-Math.PI/6));
+		ctx.moveTo(x2, y2);
+		ctx.lineTo(x2-headlen*Math.cos(angle+Math.PI/6),y2-headlen*Math.sin(angle+Math.PI/6));
+		ctx.stroke();
+		break;
       case 'line':
       default:
         ctx.strokeStyle = color;
