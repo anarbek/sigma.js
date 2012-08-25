@@ -347,13 +347,18 @@ function Plotter(nodesCtx, edgesCtx, labelsCtx, hoverCtx, graph, w, h) {
 		ctx.stroke();
 
 		// arrowhead
+		ctx.beginPath();
 		var headlen = 10;	// length of head in pixels
 		var dx = x2-x1;
 		var dy = y2-y1;
 		var angle = Math.atan2(dy,dx);
-		ctx.lineTo(x2-headlen*Math.cos(angle-Math.PI/6),y2-headlen*Math.sin(angle-Math.PI/6));
-		ctx.moveTo(x2, y2);
-		ctx.lineTo(x2-headlen*Math.cos(angle+Math.PI/6),y2-headlen*Math.sin(angle+Math.PI/6));
+		ctx.lineTo(x2-headlen*Math.cos(angle-Math.PI/10),y2-headlen*Math.sin(angle-Math.PI/10));
+//		            ctx.moveTo(x2, y2);
+		ctx.lineTo(x2-headlen*Math.cos(angle+Math.PI/10),y2-headlen*Math.sin(angle+Math.PI/10));
+		ctx.lineTo(x2,y2);
+		ctx.closePath();
+		ctx.fillStyle = ctx.strokeStyle;
+		ctx.fill();
 		ctx.stroke();
 		break;
       case 'line':
